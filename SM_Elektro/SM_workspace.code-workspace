@@ -1,0 +1,18 @@
+{
+	"folders": [
+		{
+			"name": "SM_Elektro",
+			"path": "."
+		},
+		{
+			"name": "HeltecSerial",
+			"path": "C:\\Users\\daubi\\Documents\\PlatformIO\\Projects\\HeltecSerial"
+		}
+	],
+	"settings": {
+		"terminal.integrated.env.windows": {
+			"PATH": "C:\\Users\\daubi\\.platformio\\penv\\Scripts;C:\\Users\\daubi\\.platformio\\penv;C:\\Python27\\;C:\\Python27\\Scripts;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Program Files\\Common Files\\Microsoft Shared\\Windows Live;C:\\Program Files\\avr8-gnu-toolchain\\bin;C:\\WinAVR-20100110\\utils\\bin;C:\\Program Files\\PC Connectivity Solution\\;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\Common Files\\GTK\\2.0\\bin;C:\\Program Files\\GPAC;C:\\Program Files\\MKVToolNix;C:\\Program Files\\Microsoft Windows Performance Toolkit\\;D:\\Program Files\\GNU\\GnuPG\\pub;C:\\Users\\daubi\\AppData\\Local\\Android\\sdk\\platform-tools;C:\\Program Files\\QuickTime\\QTSystem\\;C:\\Program Files\\Windows Kits\\8.1\\Windows Performance Toolkit\\;C:\\Program Files\\WinMerge;C:\\Program Files\\GitExtensions\\;C:\\Program Files\\Windows Live\\Shared;C:\\Program Files\\IVI Foundation\\IVI\\bin;C:\\Program Files\\IVI Foundation\\VISA\\WinNT\\Bin\\;C:\\Windows\\twain_32\\CNQ3200;C:\\Program Files\\Common Files\\Acronis\\VirtualFile\\;C:\\Program Files\\Common Files\\Acronis\\SnapAPI\\;C:\\Program Files\\Common Files\\Acronis\\FileProtector\\;C:\\Program Files\\Skype\\Phone\\;C:\\Program Files\\Common Files\\FLIR Systems\\Intel 1.0\\;D:\\download\\cygwin\\bin;C:\\Program Files\\PC Connectivity Solution\\;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows;C:\\Users\\daubi\\AppData\\Local\\Android\\sdk\\platform-tools; C:\\Windows\\twain_32\\CNQ3200;C:\\Users\\daubi\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Python27\\;C:\\Python27\\Scripts;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Program Files\\Common Files\\Microsoft Shared\\Windows Live;C:\\Program Files\\avr8-gnu-toolchain\\bin;C:\\WinAVR-20100110\\utils\\bin;C:\\Program Files\\PC Connectivity Solution\\;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\Common Files\\GTK\\2.0\\bin;C:\\Program Files\\GPAC;C:\\Program Files\\MKVToolNix;C:\\Program Files\\Microsoft Windows Performance Toolkit\\;D:\\Program Files\\GNU\\GnuPG\\pub;C:\\Users\\daubi\\AppData\\Local\\Android\\sdk\\platform-tools;C:\\Program Files\\QuickTime\\QTSystem\\;C:\\Program Files\\Windows Kits\\8.1\\Windows Performance Toolkit\\;C:\\Program Files\\WinMerge;C:\\Program Files\\GitExtensions\\;C:\\Program Files\\Windows Live\\Shared;C:\\Program Files\\IVI Foundation\\IVI\\bin;C:\\Program Files\\IVI Foundation\\VISA\\WinNT\\Bin\\;C:\\Windows\\twain_32\\CNQ3200;C:\\Program Files\\Common Files\\Acronis\\VirtualFile\\;C:\\Program Files\\Common Files\\Acronis\\SnapAPI\\;C:\\Program Files\\Common Files\\Acronis\\FileProtector\\;C:\\Program Files\\Skype\\Phone\\;C:\\Program Files\\Common Files\\FLIR Systems\\Intel 1.0\\;D:\\download\\cygwin\\bin;C:\\Program Files\\PC Connectivity Solution\\;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows;C:\\Users\\daubi\\AppData\\Local\\Android\\sdk\\platform-tools; C:\\Windows\\twain_32\\CNQ3200;C:\\Users\\daubi\\AppData\\Local\\Programs\\Microsoft VS Code\\bin",
+			"PLATFORMIO_CALLER": "vscode"
+		}
+	}
+}
