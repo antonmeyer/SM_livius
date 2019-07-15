@@ -57,24 +57,25 @@ void handlegetData()
 
 
   portENTER_CRITICAL(&EMHparseMutex);
+  //that are the only values which could change periodicly
   uint64_t sumVal = EMH_sumVal;
   uint32_t actVal = EMH_actVal;
+  portEXIT_CRITICAL(&EMHparseMutex);
+
   char manuf[4];
   strncpy (manuf, EMH_vendor,3);
   manuf[3] =0; // null terminated string
- 
-  char meterID[10];
-  strncpy (meterID, EMH_serial,9);
-  meterID[9] = 0;
-
-  portEXIT_CRITICAL(&EMHparseMutex);
+  char meterID[27]; //9 x 2 digit + 8 seperator + 1x 0x0
+  //strncpy (meterID, EMH_serial,9);
+  sprintf(meterID, "%02X-%02X-%02X-%02X-%02X-%02X-%02X-%02X-%02X", EMH_serial[0], EMH_serial[1], EMH_serial[2], EMH_serial[3], EMH_serial[4], EMH_serial[5], EMH_serial[6],EMH_serial[7],EMH_serial[8]);
+  meterID[26] = 0; // 0 terminated string
 
   meter1["manuf"] = manuf;
   meter1["serial"] = meterID;
   meter1["sumVal"] = sumVal;
-  meter1["sumUnit"] = "Wh";
+  meter1["sumUnit"] = "0.1 Wh";
   meter1["actVal"] = actVal;
-  meter1["actUnit"] = "W";
+  meter1["actUnit"] = "0.1 W";
   
   JsonObject meter2 = meters.createNestedObject("meter2");
   meter2["manuf"] = "Conrad";

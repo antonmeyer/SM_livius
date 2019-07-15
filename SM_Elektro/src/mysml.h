@@ -59,7 +59,7 @@ void handle_uart_event () {
 
  uart_event_t event;
 
-    if (xQueueReceive(queue_uart2, (void *)&event, 0))
+    if (xQueueReceive(queue_uart2, (void *)&event,( TickType_t ) 10 ))
     {
         Serial.print("we got an event: ");
 
@@ -167,33 +167,31 @@ portENTER_CRITICAL(&EMHparseMutex);
    // Serial.println();
 
     //we get the main counter
-    uint64_t pow1 = 0;
     uint8_t *buf2;
 
     //this is a uggly hack to convert big endian to little endian
     // as the SML stream has only 5 byte, we can not use standard libs
-    buf2 = (uint8_t*) &pow1;
+    buf2 = (uint8_t*) &EMH_sumVal;
 
     for (int i = 0; i < 5; i++) {
         buf2[4-i] = smlmsg[0x98+i];
     }
     
-    EMH_sumVal = pow1;
+    
     /*
     double powfl = ((double)pow1) / 10000;
     Serial.print("pow1: ");
     Serial.println(powfl);
     */
     //we get the current power consumption
-    /* 
-    uint32_t powc;
-    buf2 = (uint8_t*) &powc;
+    
+    buf2 = (uint8_t*) &EMH_actVal;
 
     for (int i = 0; i < 4; i++) {
         buf2[3-i] = smlmsg[0xD7+i];
     }
-    */
-    EMH_actVal = be32toh(smlmsg[0xD7]);
+    
+    //EMH_actVal = be32toh(smlmsg[0xD7]);
     /*
     powfl = ((double)powc) / 10;
     Serial.print("powc: ");
