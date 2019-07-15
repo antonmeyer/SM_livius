@@ -3,10 +3,6 @@
 		{
 			"name": "SM_Elektro",
 			"path": "."
-		},
-		{
-			"name": "HeltecSerial",
-			"path": "C:\\Users\\daubi\\Documents\\PlatformIO\\Projects\\HeltecSerial"
 		}
 	],
 	"settings": {

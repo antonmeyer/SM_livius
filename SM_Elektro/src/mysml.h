@@ -59,7 +59,7 @@ void handle_uart_event () {
 
  uart_event_t event;
 
-    if (xQueueReceive(queue_uart2, (void *)&event,( TickType_t ) 10 ))
+    if (xQueueReceive(queue_uart2, (void *)&event,( TickType_t ) 0))
     {
         Serial.print("we got an event: ");
 
