@@ -35,10 +35,8 @@ void loop()
 {
   //check WiFi Connection
   while (WiFi.status() != WL_CONNECTED)
-  {
-    delay(500); Serial.print(":-(");
-  }
-  
+  {delay(500); Serial.print(":-(");}
+
   handle_uart_event();
   server.handleClient();
 }
@@ -54,12 +52,10 @@ void handlegetData()
   JsonObject meters = root.createNestedObject("meters");
   JsonObject meter1 = meters.createNestedObject("meter1");
 
-
   // we need to ensure, that one set of values belongs together
   // hardware serial delivers independant new values
   // so we copy over the values in the critical section
   // we might optimize numbers of copy and just block the hw serial buffer
-
 
   portENTER_CRITICAL(&EMHparseMutex);
   //that are the only values which could change periodicly
@@ -85,7 +81,7 @@ void handlegetData()
   JsonObject meter2 = meters.createNestedObject("meter2");
   meter2["manuf"] = "Conrad";
   meter2["serial"] = "765432";
-  meter2["sumCnt"] = sumVal++;
+  meter2["sumCnt"] = ++sumVal
   meter2["sumUnit"] = "10000/kWh";
 
 
