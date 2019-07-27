@@ -14,8 +14,7 @@ void setup()
   WiFi.begin(ssid, password);
   while (WiFi.status() != WL_CONNECTED)
   {
-    delay(500);
-    Serial.print(".");
+    delay(500); Serial.print(":-(");
   }
 
   Serial.println("WiFi connected with IP: ");
@@ -34,6 +33,12 @@ void setup()
 
 void loop()
 {
+  //check WiFi Connection
+  while (WiFi.status() != WL_CONNECTED)
+  {
+    delay(500); Serial.print(":-(");
+  }
+  
   handle_uart_event();
   server.handleClient();
 }
