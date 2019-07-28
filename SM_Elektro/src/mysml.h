@@ -111,7 +111,9 @@ void handle_uart_event () {
 
 void EMH_obisParser(uint8_t *smlmsg)
 {
-
+//ToDo encapsulate data structure and parsing in a object
+// add a kind of msg counter to give a feeling to the log file writer
+// that the message has changed
 /*
 OBIS pattern search
 taken from real-life scaned and analysed

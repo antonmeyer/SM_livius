@@ -1,5 +1,7 @@
 #include "myWebServer.h"
 #include "mysml.h"
+#include "myS0Cnt.h"
+
 
 int sumVal = 5800;
 int humidity;
@@ -27,8 +29,9 @@ void setup()
 
   server.begin();
   Serial.println("HTTP server started");
-
+  deltatime = 3600000;
   setup_uart();
+  setup_S0(18);
 }
 
 void loop()
@@ -47,7 +50,8 @@ void loop()
 void handlegetData()
 {
   String jsonresponse;
- StaticJsonDocument<512> doc;
+  StaticJsonDocument<512> doc;
+  Serial.println("handlegetdata1");
   JsonObject root = doc.to<JsonObject>();
   JsonObject meters = root.createNestedObject("meters");
   JsonObject meter1 = meters.createNestedObject("meter1");
@@ -77,15 +81,14 @@ void handlegetData()
   meter1["sumUnit"] = "0.1 Wh";
   meter1["actVal"] = actVal;
   meter1["actUnit"] = "0.1 W";
-  
   JsonObject meter2 = meters.createNestedObject("meter2");
-  meter2["manuf"] = "Conrad";
+  meter2["manuf"] = "KDK3-80";
   meter2["serial"] = "765432";
-  meter2["sumCnt"] = ++sumVal
-  meter2["sumUnit"] = "10000/kWh";
-
+  meter2["sumCnt"] = sumCnt;
+  meter2["sumUnit"] = "1000/kWh";
+  meter2["actWatt"] = 3600000/deltatime;
+  meter2["actdeltaTime_ms"] = millis() - oldtime;
 
   serializeJson(root, jsonresponse);
   server.send(200,"text/json",jsonresponse);
-  
 }
