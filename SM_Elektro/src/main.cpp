@@ -7,11 +7,15 @@ int sumVal = 5800;
 int humidity;
 
 void handlegetData();
+void handlegetrawSML();
 
 void setup()
 {
 
   Serial.begin(115200);
+  //for esp32 it seems to be UART_1 on the USB bridge
+  //UART_0 and _2 aer on the pin layout
+  //we can mix espressif API and Arduino API)
 
   WiFi.begin(ssid, password);
   while (WiFi.status() != WL_CONNECTED)
@@ -26,6 +30,7 @@ void setup()
   setup_WebServer();
 
   server.on("/getdata", handlegetData);
+  server.on("/getrawsml", handlegetrawSML);
 
   server.begin();
   Serial.println("HTTP server started");
@@ -47,11 +52,25 @@ void loop()
 // not best practice, we keep it here to have access on the global variables
 // ToDo find a better solution
 // is a callback from the Web-Server
+
+void handlegetrawSML()
+{
+//ugly hack could have race conditions with len and data
+char datapage[2048];
+char *dpp = datapage;
+
+for (int i=0;i <len; i++) {
+    sprintf(dpp +i*2, "%02X", data[i]);
+  }
+datapage[len] = 0;
+server.send(200,"text/plain", datapage);
+}
+
 void handlegetData()
 {
   String jsonresponse;
   StaticJsonDocument<512> doc;
-  Serial.println("handlegetdata1");
+  
   JsonObject root = doc.to<JsonObject>();
   JsonObject meters = root.createNestedObject("meters");
   JsonObject meter1 = meters.createNestedObject("meter1");
