@@ -19,21 +19,36 @@ so we go for an interrupt
 
 if we need multiple S0 counter we would have to create an object class
 */
+#define S0pin 18
+#define IMPSHORT 25
+#define IMPLONG 130
 
-volatile uint32_t oldtime, deltatime, sumCnt; // in ms
+volatile uint32_t oldtime, deltatime, sumCnt, lasthigh; // in ms
 
-void IRAM_ATTR handle_S0_interrupt () {
-    uint32_t newtime = millis();
-    deltatime = newtime - oldtime;
-    oldtime = newtime;
-    sumCnt++;
+void IRAM_ATTR handle_S0_interrupt()
+{
+    /*we check for pulse length */
+    if (digitalRead(S0pin))
+        { //raising edge
+            lasthigh = millis();
+        }
+    else
+    { //we have a falling edge
+        uint32_t newtime = millis();
+        uint32_t implen = newtime - lasthigh;
+        if ((implen > IMPSHORT) && (implen < IMPLONG))
+            {
+                deltatime = newtime - oldtime;
+                oldtime = newtime;
+                sumCnt++;
+            }
+    }
 }
 
-void setup_S0 (uint8_t pin) {
+void setup_S0()
+{
     sumCnt = 0;
     oldtime = millis();
-    pinMode(pin, INPUT_PULLUP);
-    attachInterrupt(pin, handle_S0_interrupt, FALLING);
-
+    pinMode(S0pin, INPUT_PULLUP);
+    attachInterrupt(S0pin, handle_S0_interrupt, CHANGE);
 }
-
