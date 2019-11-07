@@ -2,10 +2,8 @@
 #include "endian.h"
 
 portMUX_TYPE EMHparseMutex = portMUX_INITIALIZER_UNLOCKED;
-#define ECHO_TEST_TXD (GPIO_NUM_23)
-#define ECHO_TEST_RXD (GPIO_NUM_22)
-#define ECHO_TEST_RTS (UART_PIN_NO_CHANGE) //not in use
-#define ECHO_TEST_CTS (UART_PIN_NO_CHANGE) //not in use
+#define RXD2 (16) //UART 2, Rx2 = pin25 = GPIO16
+
 
 #define BUF_SIZE 1024
 uint8_t data[BUF_SIZE];
@@ -34,25 +32,22 @@ void setup_uart () {
 
     //Serial.begin(115200);
     //Serial.println("hallo echo");
+    //UART 2, Rx2 = pin25 = GPIO16 **********************
     uart_config_t conf_uart2 = {
         .baud_rate = 9600,
         .data_bits = UART_DATA_8_BITS,
         .parity = UART_PARITY_DISABLE,
         .stop_bits = UART_STOP_BITS_1,
         .flow_ctrl = UART_HW_FLOWCTRL_DISABLE};
-   /* 
-uart_param_config(UART_NUM_0, &uart_config0);
-uart_set_pin(UART_NUM_0, UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE);
-uart_driver_install(UART_NUM_0,  BUF_SIZE * 2, 0, 0, NULL, 0);
-*/
+   
 
     // HW Serial 2
     uart_param_config(UART_NUM_2, &conf_uart2);
-    uart_set_pin(UART_NUM_2, ECHO_TEST_TXD, ECHO_TEST_RXD, ECHO_TEST_RTS, ECHO_TEST_CTS);
+    uart_set_pin(UART_NUM_2, UART_PIN_NO_CHANGE, RXD2, UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE);
     uart_driver_install(UART_NUM_2, BUF_SIZE, 0, 20, &queue_uart2, 0);
 
     uart_enable_pattern_det_intr(UART_NUM_2, 0x1B, 4, 10000, 10, 10);
-    uart_pattern_queue_reset(UART_NUM_2, 5); // keep 5 paatern positions in queue
+    uart_pattern_queue_reset(UART_NUM_2, 5); // keep 5 pattern positions in queue
 }
 
 void handle_uart_event () {

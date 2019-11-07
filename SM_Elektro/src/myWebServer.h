@@ -37,11 +37,7 @@ void handleNotFound()
 
 void setup_WebServer() {
 
-    server.on("/", handleRoot);
-
-  server.on("/inline", []() {
-    server.send(200, "text/plain", "this works as well");
-  });
+  server.on("/", handleRoot);
 
   server.onNotFound(handleNotFound);
 }
