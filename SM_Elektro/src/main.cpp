@@ -36,7 +36,7 @@ void setup()
   Serial.println("HTTP server started");
   deltatime = 3600000;
   setup_uart();
-  setup_S0(18);
+  setup_S0();
 }
 
 void loop()
