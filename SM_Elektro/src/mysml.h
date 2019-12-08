@@ -152,14 +152,15 @@ portENTER_CRITICAL(&EMHparseMutex);
     //Serial.print("vendor: ");
     for (int i = 0; i<3; i++) {
         //Serial.print((char) smlmsg[0x6B+i]);
-        EMH_vendor[i]= smlmsg[0x6B+i];
+        EMH_vendor[i]= smlmsg[0x6D+i];
     }
    // Serial.println();
 
     //Serial.print("ID:");
     for (int i = 0; i<9; i++) {
-        //Serial.print( smlmsg[ 0x7C+i], HEX);
-        EMH_serial[i] = smlmsg[ 0x7C+i];
+        //Serial.print( smlmsg[ 0x7C +i], HEX);
+        EMH_serial[i] = smlmsg[ 0x7E +i];
+        
     }
    // Serial.println();
 
@@ -171,7 +172,9 @@ portENTER_CRITICAL(&EMHparseMutex);
     buf2 = (uint8_t*) &EMH_sumVal;
 
     for (int i = 0; i < 5; i++) {
-        buf2[4-i] = smlmsg[0x98+i];
+       // buf2[4-i] = smlmsg[0x98+i];
+       //livius
+       buf2[4-i] = smlmsg[0x9B+i];
     }
     
     

@@ -19,9 +19,9 @@ so we go for an interrupt
 
 if we need multiple S0 counter we would have to create an object class
 */
-#define S0pin 18
-#define IMPSHORT 25
-#define IMPLONG 130
+#define S0pin 19
+#define IMPSHORT 1
+#define IMPLONG 1000
 
 volatile uint32_t oldtime, deltatime, sumCnt, lasthigh; // in ms
 
