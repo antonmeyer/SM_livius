@@ -1,10 +1,10 @@
-import requests
+import csv
+import signal
+import sys
 import time
 from time import gmtime, strftime
-import csv
-import sys
-import signal
 
+import requests
 
 period =10 # intervall in seconds
 urlgetstr = "http://192.168.100.200/getdata" # IP Address needs to be static in ESP32
@@ -43,7 +43,7 @@ while 1:
         sme_file.flush()
     except:
         e = sys.exc_info()[0]
-        print "we have a problem"
+        print ("we have a problem")
         print str(e)
 
     nexttime += period # a bit uggly if there is an overrun by time
